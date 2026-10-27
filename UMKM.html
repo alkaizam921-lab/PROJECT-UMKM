@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMKM Nusantara - Bangga Produk Lokal</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/plus-jakarta-sans@5.0.3/index.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@5.0.12/index.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #B8860B;
+            --primary-dark: #8B6914;
+            --secondary: #2D5016;
+            --accent: #D4A853;
+            --dark: #1a1a2e;
+            --cream: #FFF8E7;
+            --warm-gray: #F5F0E8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            background: #fff;
+            color: #333;
+        }
+
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            padding: 1rem 0;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 30px rgba(0,0,0,0.08);
+            padding: 0.5rem 0;
+        }
+
+        .nav-link {
+            position: relative;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .navbar.scrolled .nav-link {
+            color: var(--dark);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #1a1a2e 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4A853' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-decoration {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        .hero-decoration-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--accent);
+            top: -200px;
+            right: -200px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero-decoration-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary);
+            bottom: -150px;
+            left: -100px;
+            animation: float 6s ease-in-out infinite reverse;
+        }
+
+        .hero-decoration-3 {
+            width: 200px;
+            height: 200px;
+            background: var(--accent);
+            top: 50%;
+            left: 50%;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(212, 168, 83, 0.15);
+            border: 1px solid rgba(212, 168, 83, 0.3);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent), #F4D03F);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.8;
+            max-width: 540px;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 20px rgba(184, 134, 11, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(184, 134, 11, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            border: 2px solid rgba(255,255,255,0.3);
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInRight 1s ease 0.5s both;
+        }
+
+        .hero-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+        }
+
+        .hero-card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .mini-card {
+            background: rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .mini-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-4px);
+        }
+
+        .mini-card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .mini-card h4 {
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .mini-card p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.75rem;
+            margin: 0;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: #fff;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+            border-radius: 20px;
+            box-shadow: 0 10px 60px rgba(0,0,0,0.1);
+            padding: 2.5rem 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0 1.5rem;
+            border-right: 1px solid #eee;
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: #777;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 0;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, rgba(184,134,11,0.1), rgba(212,168,83,0.1));
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            color: #777;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        /* About Section */
+        .about-section {
+            background: var(--warm-gray);
+        }
+
+        .about-image-container {
+            position: relative;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .about-image-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10S0 14.5 0 20s4.5 10 10 10 10-4.5 10-10zm20 0c0-5.5-4.5-10-10-10S20 14.5 20 20s4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .about-image-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+        }
+
+        .about-image-content i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .about-image-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-image-content p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        .about-floating-card {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .about-floating-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        .about-feature {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-feature-icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            background: linear-gradient(135deg, rgba(184,134,11,0.1), rgba(212,168,83,0.15));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .about-feature h4 {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .about-feature p {
+            color: #777;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Products Section */
+        .product-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: all 0.4s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+
+        .product-image {
+            height: 240px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image-bg {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            transition: transform 0.4s;
+        }
+
+        .product-card:hover .product-image-bg {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--primary);
+            color: #fff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .product-wishlist {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 36px;
+            height: 36px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .product-wishlist:hover {
+            background: #ff4757;
+            color: #fff;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin: 0.5rem 0;
+        }
+
+        .product-desc {
+            color: #999;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: #ffc107;
+            font-size: 0.85rem;
+        }
+
+        .product-rating span {
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        /* Categories Section */
+        .category-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s;
+            border: 2px solid #f0f0f0;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(184,134,11,0.1);
+        }
+
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.2rem;
+            font-size: 2rem;
+            transition: all 0.3s;
+        }
+
+        .category-card:hover .category-icon {
+            transform: scale(1.1);
+        }
+
+        .category-card h4 {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-card p {
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        /* Testimonials */
+        .testimonial-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4A853' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-5px);
+        }
+
+        .testimonial-quote {
+            color: var(--accent);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-name {
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-role {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8rem;
+        }
+
+        .testimonial-stars {
+            color: #ffc107;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+
+        /* Contact Section */
+        .contact-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid #f0f0f0;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.3rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: all 0.3s;
+            background: #fafafa;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(212,168,83,0.1);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: var(--accent);
+        }
+
+        .footer-title {
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.08);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.7);
+            transition: all 0.3s;
+            margin-right: 0.5rem;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26,26,46,0.98);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent);
+        }
+
+        .mobile-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.3rem;
+        }
+
+        .navbar.scrolled .hamburger {
+            color: var(--dark);
+        }
+
+        /* Counter Animation */
+        .counter {
+            display: inline-block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                display: none !important;
+            }
+
+            .stats-bar {
+                margin-top: -30px;
+                padding: 1.5rem;
+            }
+
+            .stat-item {
+                padding: 0.5rem;
+                border-right: none;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .about-floating-card {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                margin-top: 1rem;
+            }
+        }
+
+        /* Smooth scroll offset */
+        section[id] {
+            scroll-margin-top: 80px;
+        }
+
+        /* Loading animation */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--dark);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(212,168,83,0.2);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Batik pattern divider */
+        .batik-divider {
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent), var(--primary), var(--accent), transparent);
+            border: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 text-white font-bold text-xl" style="text-decoration:none;">
+                <div style="width:40px;height:40px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:10px;display:flex;align-items:center;justify-content:center;">
+                    <i class="fas fa-store text-white text-lg"></i>
+                </div>
+                <span>UMKM<span style="color:var(--accent)">Nusantara</span></span>
+            </a>
+            <div class="nav-links flex items-center gap-8">
+                <a href="#beranda" class="nav-link">Beranda</a>
+                <a href="#tentang" class="nav-link">Tentang</a>
+                <a href="#produk" class="nav-link">Produk</a>
+                <a href="#kategori" class="nav-link">Kategori</a>
+                <a href="#testimoni" class="nav-link">Testimoni</a>
+                <a href="#kontak" class="nav-link">Kontak</a>
+                <a href="#kontak" class="btn-primary" style="padding:0.6rem 1.5rem;font-size:0.85rem;">
+                    <i class="fas fa-rocket"></i> Mulai Usaha
+                </a>
+            </div>
+            <button class="hamburger" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" onclick="toggleMobileMenu()">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#beranda" onclick="toggleMobileMenu()">Beranda</a>
+        <a href="#tentang" onclick="toggleMobileMenu()">Tentang</a>
+        <a href="#produk" onclick="toggleMobileMenu()">Produk</a>
+        <a href="#kategori" onclick="toggleMobileMenu()">Kategori</a>
+        <a href="#testimoni" onclick="toggleMobileMenu()">Testimoni</a>
+        <a href="#kontak" onclick="toggleMobileMenu()">Kontak</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="beranda">
+        <div class="hero-decoration hero-decoration-1"></div>
+        <div class="hero-decoration hero-decoration-2"></div>
+        <div class="hero-decoration hero-decoration-3"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-wrap items-center gap-12">
+                <div class="flex-1" style="min-width:300px;">
+                    <div class="hero-badge">
+                        <i class="fas fa-star"></i>
+                        Platform UMKM Terpercaya #1 di Indonesia
+                    </div>
+                    <h1>
+                        Membangun <span>UMKM</span> Indonesia yang Lebih Maju
+                    </h1>
+                    <p>
+                        Kami mendukung pelaku usaha mikro, kecil, dan menengah untuk berkembang bersama. Temukan produk lokal berkualitas dan bergabung dalam komunitas UMKM terbesar di Nusantara.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#produk" class="btn-primary">
+                            <i class="fas fa-shopping-bag"></i> Jelajahi Produk
+                        </a>
+                        <a href="#tentang" class="btn-secondary">
+                            <i class="fas fa-play-circle"></i> Pelajari Lebih
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual flex-1" style="min-width:300px;max-width:480px;">
+                    <div class="hero-card">
+                        <div style="text-align:center;margin-bottom:1.5rem;">
+                            <h3 style="color:#fff;font-weight:700;font-size:1.1rem;">Ekosistem UMKM Digital</h3>
+                            <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;">Semua yang Anda butuhkan dalam satu platform</p>
+                        </div>
+                        <div class="hero-card-grid">
+                            <div class="mini-card">
+                                <div class="mini-card-icon" style="background:linear-gradient(135deg,#ff6b6b,#ee5a24);">
+                                    <i class="fas fa-handshake" style="color:#fff;"></i>
+                                </div>
+                                <h4>Pelatihan</h4>
+                                <p>Bimbingan usaha</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-card-icon" style="background:linear-gradient(135deg,#4ecdc4,#44bd32);">
+                                    <i class="fas fa-chart-line" style="color:#fff;"></i>
+                                </div>
+                                <h4>Analitik</h4>
+                                <p>Data penjualan</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-card-icon" style="background:linear-gradient(135deg,#a29bfe,#6c5ce7);">
+                                    <i class="fas fa-bullhorn" style="color:#fff;"></i>
+                                </div>
+                                <h4>Pemasaran</h4>
+                                <p>Digital marketing</p>
+                            </div>
+                            <div class="mini-card">
+                                <div class="mini-card-icon" style="background:linear-gradient(135deg,var(--primary),var(--accent));">
+                                    <i class="fas fa-wallet" style="color:#fff;"></i>
+                                </div>
+                                <h4>Modal</h4>
+                                <p>Akses pendanaan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="container mx-auto px-6" style="position:relative;z-index:10;">
+        <div class="stats-bar">
+            <div class="flex flex-wrap justify-center">
+                <div class="stat-item">
+                    <div class="stat-number"><span class="counter" data-target="65">0</span>M+</div>
+                    <div class="stat-label">Pelaku UMKM</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number"><span class="counter" data-target="34">0</></div>
+                    <div class="stat-label">Provinsi Terjangkau</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number"><span class="counter" data-target="150">0</span>K+</div>
+                    <div class="stat-label">Produk Terdaftar</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number"><span class="counter" data-target="98">0</span>%</div>
+                    <div class="stat-label">Kepuasan Mitra</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="section about-section" id="tentang">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap items-center gap-12">
+                <div class="flex-1 reveal" style="min-width:300px;">
+                    <div class="about-image-container">
+                        <div class="about-image">
+                            <div class="about-image-pattern"></div>
+                            <div class="about-image-content">
+                                <i class="fas fa-landmark"></i>
+                                <h3>Sejak 2020</h3>
+                                <p>Mendukung UMKM Indonesia</p>
+                            </div>
+                        </div>
+                        <div class="about-floating-card">
+                            <div class="about-floating-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight:700;color:var(--dark);">Penghargaan</div>
+                                <div style="font-size:0.85rem;color:#999;">Best UMKM Platform 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 reveal" style="min-width:300px;">
+                    <div class="section-badge">
+                        <i class="fas fa-info-circle"></i> Tentang Kami
+                    </div>
+                    <h2 class="section-title">Memberdayakan UMKM untuk <span style="color:var(--primary);">Pertumbuhan</span> Berkelanjutan</h2>
+                    <p class="section-subtitle" style="margin-bottom:2rem;">
+                        UMKM Nusantara adalah platform digital yang didedikasikan untuk membantu pelaku usaha mikro, kecil, dan menengah di Indonesia. Kami menyediakan solusi lengkap mulai dari pelatihan, pemasaran digital, hingga akses permodalan.
+                    </p>
+                    <div class="about-feature">
+                        <div class="about-feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h4>Pelatihan & Sertifikasi</h4>
+                            <p>Program pelatihan komprehensif untuk meningkatkan kapasitas dan keterampilan pelaku UMKM.</p>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="about-feature-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div>
+                            <h4>Go Digital & Global</h4>
+                            <p>Membantu UMKM go digital dengan marketplace, social media marketing, dan ekspor produk.</p>
+                        </div>
+                    </div>
+                    <div class="about-feature">
+                        <div class="about-feature-icon">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <div>
+                            <h4>Akses Permodalan</h4>
+                            <p>Kemitraan dengan lembaga keuangan untuk menyediakan modal usaha dengan bunga rendah.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="section" id="kategori">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <div class="section-badge" style="margin:0 auto 1rem;">
+                    <i class="fas fa-th-large"></i> Kategori Usaha
+                </div>
+                <h2 class="section-title">Berbagai Kategori <span style="color:var(--primary);">UMKM</span> Unggulan</h2>
+                <p class="section-subtitle" style="margin:0 auto;">Temukan berbagai produk dan layanan dari UMKM terbaik di seluruh Indonesia</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 reveal">
+                <div class="category-card">
+                    <div class="category-icon" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2);">
+                        <i class="fas fa-tshirt" style="color:#e65100;"></i>
+                    </div>
+                    <h4>Fashion</h4>
+                    <p>12.5K Produk</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);">
+                        <i class="fas fa-utensils" style="color:#2e7d32;"></i>
+                    </div>
+                    <h4>Kuliner</h4>
+                    <p>25.3K Produk</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb);">
+                        <i class="fas fa-paint-brush" style="color:#1565c0;"></i>
+                    </div>
+                    <h4>Kerajinan</h4>
+                    <p>8.7K Produk</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);">
+                        <i class="fas fa-spa" style="color:#c62828;"></i>
+                    </div>
+                    <h4>Kecantikan</h4>
+                    <p>15.2K Produk</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon" style="background:linear-gradient(135deg,#f3e5f5,#ce93d8);">
+                        <i class="fas fa-seedling" style="color:#6a1b9a;"></i>
+                    </div>
+                    <h4>Pertanian</h4>
+                    <p>6.8K Produk</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon" style="background:linear-gradient(135deg,#fff8e1,#ffecb3);">
+                        <i class="fas fa-laptop" style="color:#f57f17;"></i>
+                    </div>
+                    <h4>Teknologi</h4>
+                    <p>4.1K Produk</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="section" id="produk" style="background:var(--warm-gray);">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <div class="section-badge" style="margin:0 auto 1rem;">
+                    <i class="fas fa-fire"></i> Produk Unggulan
+                </div>
+                <h2 class="section-title">Produk <span style="color:var(--primary);">UMKM</span> Terbaik</h2>
+                <p class="section-subtitle" style="margin:0 auto;">Koleksi produk pilihan dari pelaku UMKM berprestasi di seluruh Indonesia</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12 reveal">
+                <button class="filter-btn active" onclick="filterProducts('all')" style="padding:0.6rem 1.5rem;border-radius:50px;border:2px solid var(--accent);background:var(--accent);color:#fff;font-weight:600;cursor:pointer;transition:all 0.3s;font-size:0.9rem;">Semua</button>
+                <button class="filter-btn" onclick="filterProducts('fashion')" style="padding:0.6rem 1.5rem;border-radius:50px;border:2px solid #ddd;background:#fff;color:#666;font-weight:600;cursor:pointer;transition:all 0.3s;font-size:0.9rem;">Fashion</button>
+                <button class="filter-btn" onclick="filterProducts('kuliner')" style="padding:0.6rem 1.5rem;border-radius:50px;border:2px solid #ddd;background:#fff;color:#666;font-weight:600;cursor:pointer;transition:all 0.3s;font-size:0.9rem;">Kuliner</button>
+                <button class="filter-btn" onclick="filterProducts('kerajinan')" style="padding:0.6rem 1.5rem;border-radius:50px;border:2px solid #ddd;background:#fff;color:#666;font-weight:600;cursor:pointer;transition:all 0.3s;font-size:0.9rem;">Kerajinan</button>
+                <button class="filter-btn" onclick="filterProducts('kecantikan')" style="padding:0.6rem 1.5rem;border-radius:50px;border:2px solid #ddd;background:#fff;color:#666;font-weight:600;cursor:pointer;transition:all 0.3s;font-size:0.9rem;">Kecantikan</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 reveal" id="productGrid">
+                <!-- Product 1 -->
+                <div class="product-card" data-category="fashion">
+                    <div class="product-image">
+                        <div class="product-image-bg" style="background:linear-gradient(135deg,#8B4513,#D2691E);">
+                            <i class="fas fa-tshirt" style="color:rgba(255,255,255,0.3);font-size:5rem;"></i>
+                        </div>
+                        <span class="product-badge">Best Seller</span>
+                        <div class="product-wishlist" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Fashion</div>
+                        <h3 class="product-name">Batik Tulis Premium Yogyakarta</h3>
+                        <p class="product-desc">Batik tulis asli buatan pengrajin Yogyakarta dengan motif parang klasik.</p>
+                        <div class="product-footer">
+                            <div class="product-price">Rp 450.000</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(4.8)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card" data-category="kuliner">
+                    <div class="product-image">
+                        <div class="product-image-bg" style="background:linear-gradient(135deg,#3E2723,#5D4037);">
+                            <i class="fas fa-mug-hot" style="color:rgba(255,255,255,0.3);font-size:5rem;"></i>
+                        </div>
+                        <span class="product-badge">Populer</span>
+                        <div class="product-wishlist" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Kuliner</div>
+                        <h3 class="product-name">Kopi Arabika Gayo Aceh</h3>
+                        <p class="product-desc">Kopi arabika premium dari dataran tinggi Gayo, Aceh dengan cita rasa khas.</p>
+                        <div class="product-footer">
+                            <div class="product-price">Rp 125.000</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(5.0)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card" data-category="kerajinan">
+                    <div class="product-image">
+                        <div class="product-image-bg" style="background:linear-gradient(135deg,#BF360C,#E64A19);">
+                            <i class="fas fa-vase" style="color:rgba(255,255,255,0.3);font-size:5rem;"></i>
+                            <i class="fas fa-wine-bottle" style="color:rgba(255,255,255,0.3);font-size:5rem;"></i>
+                        </div>
+                        <span class="product-badge">Baru</span>
+                        <div class="product-wishlist" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Kerajinan</div>
+                        <h3 class="product-name">Keramik Tradisional Kasongan</h3>
+                        <p class="product-desc">Vas keramik handmade dari desa Kasongan, Bantul dengan finishing premium.</p>
+                        <div class="product-footer">
+                            <div class="product-price">Rp 280.000</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(4.5)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card" data-category="kecantikan">
+                    <div class="product-image">
+                        <div class="product-image-bg" style="background:linear-gradient(135deg,#880E4F,#AD1457);">
+                            <i class="fas fa-spa" style="color:rgba(255,255,255,0.3);font-size:5rem;"></i>
+                        </div>
+                        <span class="product-badge">Organik</span>
+                        <div class="product-wishlist" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Kecantikan</div>
+                        <h3 class="product-name">Skincare Herbal Organik</h3>
+                        <p class="product-desc">Perawatan kulit alami dari bahan-bahan herbal pilihan tanpa bahan kimia.</p>
+                        <div class="product-footer">
+                            <div class="product-price">Rp 185.000</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(4.7)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card" data-category="kerajinan">
+                    <div class="product-image">
+                        <div class="product-image-bg" style="background:linear-gradient(135deg,#33691E,#558B2F);">
+                            <i class="fas fa-shopping-basket" style="color:rgba(255,255,255,0.3);font-size:5rem;"></i>
+                        </div>
+                        <span class="product-badge">Eco</span>
+                        <div class="product-wishlist" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Kerajinan</div>
+                        <h3 class="product-name">Tas Anyaman Rotan Natural</h3>
+                        <p class="product-desc">Tas anyaman rotan alami ramah lingkungan, cocok untuk gaya casual.</p>
+                        <div class="product-footer">
+                            <div class="product-price">Rp 320.000</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(4.9)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card" data-category="kuliner">
+                    <div class="product-image">
+                        <div class="product-image-bg" style="background:linear-gradient(135deg,#E65100,#F57C00);">
+                            <i class="fas fa-pepper-hot" style="color:rgba(255,255,255,0.3);font-size:5rem;"></i>
+                        </div>
+                        <span class="product-badge">Spesial</span>
+                        <div class="product-wishlist" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Kuliner</div>
+                        <h3 class="product-name">Sambal Nusantara Collection</h3>
+                        <p class="product-desc">Koleksi sambal khas dari berbagai daerah di Indonesia, 100% alami.</p>
+                        <div class="product-footer">
+                            <div class="product-price">Rp 85.000</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(4.6)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card" data-category="fashion">
+                    <div class="product-image">
+                        <div class="product-image-bg" style="background:linear-gradient(135deg,#4A148C,#6A1B9A);">
+                            <i class="fas fa-gem" style="color:rgba(255,255,255,0.3);font-size:5rem;"></i>
+                        </div>
+                        <span class="product-badge">Handmade</span>
+                        <div class="product-wishlist" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Fashion</div>
+                        <h3 class="product-name">Perak Bali Handcrafted</h3>
+                        <p class="product-desc">Perhiasan perak handmade dari pengrajin ahli Celuk, Bali.</p>
+                        <div class="product-footer">
+                            <div class="product-price">Rp 550.000</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(5.0)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card" data-category="kecantikan">
+                    <div class="product-image">
+                        <div class="product-image-bg" style="background:linear-gradient(135deg,#1B5E20,#2E7D32);">
+                            <i class="fas fa-leaf" style="color:rgba(255,255,255,0.3);font-size:5rem;"></i>
+                        </div>
+                        <span class="product-badge">Natural</span>
+                        <div class="product-wishlist" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Kecantikan</div>
+                        <h3 class="product-name">Minyak Esensial Rempah</h3>
+                        <p class="product-desc">Minyak esensial murni dari rempah-rempah pilihan Indonesia.</p>
+                        <div class="product-footer">
+                            <div class="product-price">Rp 95.000</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(4.3)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonial-section" id="testimoni">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <div class="section-badge" style="background:rgba(212,168,83,0.15);color:var(--accent);margin:0 auto 1rem;">
+                    <i class="fas fa-comments"></i> Testimoni
+                </div>
+                <h2 class="section-title" style="color:#fff;">Apa Kata <span style="color:var(--accent);">Mitra</span> Kami</h2>
+                <p class="section-subtitle" style="color:rgba(255,255,255,0.6);margin:0 auto;">Dengarkan cerita sukses dari para pelaku UMKM yang telah bergabung bersama kami</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <i class="fas fa-quote-left testimonial-quote"></i>
+                    <p class="testimonial-text">"Berkat platform UMKM Nusantara, penjualan batik saya meningkat 300%. Sekarang produk saya bisa sampai ke luar negeri. Terima kasih!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" style="background:linear-gradient(135deg,#e65100,#ff8f00);">S</div>
+                        <div>
+                            <div class="testimonial-name">Siti Rahayu</div>
+                            <div class="testimonial-role">Pengrajin Batik, Yogyakarta</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <i class="fas fa-quote-left testimonial-quote"></i>
+                    <p class="testimonial-text">"Pelatihan digital marketing dari UMKM Nusantara sangat membantu. Omzet kopi saya naik drastis setelah belajar strategi pemasaran online."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" style="background:linear-gradient(135deg,#1b5e20,#4caf50);">B</div>
+                        <div>
+                            <div class="testimonial-name">Budi Santoso</div>
+                            <div class="testimonial-role">Petani Kopi, Aceh</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <i class="fas fa-quote-left testimonial-quote"></i>
+                    <p class="testimonial-text">"Akses permodalan yang mudah dan pendampingan yang intensif membuat usaha kerajinan saya berkembang pesat. Sangat recommended!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" style="background:linear-gradient(135deg,#4a148c,#9c27b0);">D</div>
+                        <div>
+                            <div class="testimonial-name">Dewi Lestari</div>
+                            <div class="testimonial-role">Pengrajin Anyaman, Bali</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="reveal">
+                <h2 class="font-playfair text-white mb-6" style="font-size:2.8rem;font-weight:700;">Siap Mengembangkan Usaha Anda?</h2>
+                <p class="text-white mb-8" style="opacity:0.9;font-size:1.1rem;max-width:600px;margin:0 auto 2rem;">
+                    Bergabunglah dengan ribuan pelaku UMKM lainnya dan rasakan manfaat digitalisasi untuk bisnis Anda. Daftar sekarang, GRATIS!
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#kontak" class="btn-secondary" style="border-color:#fff;color:#fff;">
+                        <i class="fas fa-user-plus"></i> Daftar Gratis
+                    </a>
+                    <a href="#kontak" class="btn-primary" style="background:#fff;color:var(--primary);">
+                        <i class="fas fa-phone"></i> Hubungi Kami
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="kontak">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <div class="section-badge" style="margin:0 auto 1rem;">
+                    <i class="fas fa-envelope"></i> Hubungi Kami
+                </div>
+                <h2 class="section-title">Mari <span style="color:var(--primary);">Berdiskusi</span></h2>
+                <p class="section-subtitle" style="margin:0 auto;">Punya pertanyaan atau ingin bergabung? Jangan ragu untuk menghubungi kami</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 reveal">
+                <div class="contact-card">
+                    <div class="contact-icon" style="background:linear-gradient(135deg,rgba(184,134,11,0.1),rgba(212,168,83,0.15));color:var(--primary);">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h4 style="font-weight:700;color:var(--dark);margin-bottom:0.5rem;">Alamat</h4>
+                    <p style="color:#777;font-size:0.9rem;">Jl. Merdeka No. 123, Jakarta Pusat, DKI Jakarta 10110</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon" style="background:linear-gradient(135deg,rgba(184,134,11,0.1),rgba(212,168,83,0.15));color:var(--primary);">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h4 style="font-weight:700;color:var(--dark);margin-bottom:0.5rem;">Telepon</h4>
+                    <p style="color:#777;font-size:0.9rem;">+62 21 1234 5678<br>+62 812 3456 7890</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon" style="background:linear-gradient(135deg,rgba(184,134,11,0.1),rgba(212,168,83,0.15));color:var(--primary);">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h4 style="font-weight:700;color:var(--dark);margin-bottom:0.5rem;">Email</h4>
+                    <p style="color:#777;font-size:0.9rem;">info@umkmnusantara.id<br>support@umkmnusantara.id</p>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-12 reveal">
+                <div class="flex-1" style="min-width:300px;">
+                    <div style="background:linear-gradient(135deg,var(--dark),#16213e);border-radius:24px;padding:3rem;color:#fff;">
+                        <h3 class="font-playfair" style="font-size:1.8rem;font-weight:700;margin-bottom:1rem;">Kirim Pesan</h3>
+                        <p style="color:rgba(255,255,255,0.6);margin-bottom:2rem;font-size:0.95rem;">Isi formulir di bawah ini dan tim kami akan segera menghubungi Anda.</p>
+                        <form id="contactForm" onsubmit="handleSubmit(event)">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <input type="text" class="form-control" placeholder="Nama Lengkap" required style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:#fff;">
+                                <input type="email" class="form-control" placeholder="Email" required style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:#fff;">
+                            </div>
+                            <input type="text" class="form-control mb-4" placeholder="Subjek" required style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:#fff;">
+                            <textarea class="form-control mb-4" rows="5" placeholder="Pesan Anda..." required style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:#fff;resize:none;"></textarea>
+                            <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">
+                                <i class="fas fa-paper-plane"></i> Kirim Pesan
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="flex-1" style="min-width:300px;">
+                    <div style="background:var(--warm-gray);border-radius:24px;padding:3rem;height:100%;display:flex;flex-direction:column;justify-content:center;">
+                        <h3 class="font-playfair" style="font-size:1.8rem;font-weight:700;color:var(--dark);margin-bottom:1rem;">FAQ</h3>
+                        <p style="color:#777;margin-bottom:2rem;font-size:0.95rem;">Pertanyaan yang sering diajukan</p>
+                        <div class="faq-list">
+                            <div class="faq-item" style="margin-bottom:1rem;">
+                                <button onclick="toggleFaq(this)" style="width:100%;text-align:left;background:#fff;border:none;padding:1rem 1.2rem;border-radius:12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--dark);font-size:0.95rem;font-family:'Plus Jakarta Sans',sans-serif;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                                    Bagaimana cara mendaftar?
+                                    <i class="fas fa-chevron-down" style="transition:transform 0.3s;color:var(--primary);"></i>
+                                </button>
+                                <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease;padding:0 1.2rem;">
+                                    <p style="color:#777;font-size:0.9rem;line-height:1.7;padding:1rem 0;">Anda cukup klik tombol "Daftar Gratis" dan mengisi formulir pendaftaran dengan data usaha Anda. Proses pendaftaran hanya membutuhkan waktu kurang dari 5 menit.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item" style="margin-bottom:1rem;">
+                                <button onclick="toggleFaq(this)" style="width:100%;text-align:left;background:#fff;border:none;padding:1rem 1.2rem;border-radius:12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--dark);font-size:0.95rem;font-family:'Plus Jakarta Sans',sans-serif;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                                    Apakah ada biaya pendaftaran?
+                                    <i class="fas fa-chevron-down" style="transition:transform 0.3s;color:var(--primary);"></i>
+                                </button>
+                                <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease;padding:0 1.2rem;">
+                                    <p style="color:#777;font-size:0.9rem;line-height:1.7;padding:1rem 0;">Tidak! Pendaftaran di UMKM Nusantara sepenuhnya GRATIS. Kami berkomitmen untuk mendukung pertumbuhan UMKM Indonesia tanpa membebani biaya pendaftaran.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item" style="margin-bottom:1rem;">
+                                <button onclick="toggleFaq(this)" style="width:100%;text-align:left;background:#fff;border:none;padding:1rem 1.2rem;border-radius:12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--dark);font-size:0.95rem;font-family:'Plus Jakarta Sans',sans-serif;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                                    Apa saja manfaat bergabung?
+                                    <i class="fas fa-chevron-down" style="transition:transform 0.3s;color:var(--primary);"></i>
+                                </button>
+                                <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease;padding:0 1.2rem;">
+                                    <p style="color:#777;font-size:0.9rem;line-height:1.7;padding:1rem 0;">Anda mendapatkan akses ke pelatihan gratis, marketplace digital, bantuan pemasaran, akses permodalan, dan komunitas UMKM terbesar di Indonesia.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <button onclick="toggleFaq(this)" style="width:100%;text-align:left;background:#fff;border:none;padding:1rem 1.2rem;border-radius:12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--dark);font-size:0.95rem;font-family:'Plus Jakarta Sans',sans-serif;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                                    Bagaimana sistem pembayarannya?
+                                    <i class="fas fa-chevron-down" style="transition:transform 0.3s;color:var(--primary);"></i>
+                                </button>
+                                <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height 0.3s ease;padding:0 1.2rem;">
+                                    <p style="color:#777;font-size:0.9rem;line-height:1.7;padding:1rem 0;">Kami mendukung berbagai metode pembayaran termasuk transfer bank, e-wallet (GoPay, OVO, Dana), dan virtual account. Semua transaksi dijamin aman.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="batik-divider">
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div style="width:40px;height:40px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:10px;display:flex;align-items:center;justify-content:center;">
+                            <i class="fas fa-store text-white"></i>
+                        </div>
+                        <span class="text-white font-bold text-xl">UMKM<span style="color:var(--accent)">Nusantara</span></span>
+                    </div>
+                    <p style="font-size:0.9rem;line-height:1.8;margin-bottom:1.5rem;">Platform digital terpercaya untuk pemberdayaan dan pengembangan UMKM di seluruh Indonesia.</p>
+                    <div>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Layanan</h4>
+                    <ul style="list-style:none;padding:0;">
+                        <li style="margin-bottom:0.8rem;"><a href="#">Marketplace UMKM</a></li>
+                        <li style="margin-bottom:0.8rem;"><a href="#">Pelatihan Digital</a></li>
+                        <li style="margin-bottom:0.8rem;"><a href="#">Konsultasi Bisnis</a></li>
+                        <li style="margin-bottom:0.8rem;"><a href="#">Akses Permodalan</a></li>
+                        <li><a href="#">Sertifikasi Produk</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Perusahaan</h4>
+                    <ul style="list-style:none;padding:0;">
+                        <li style="margin-bottom:0.8rem;"><a href="#">Tentang Kami</a></li>
+                        <li style="margin-bottom:0.8rem;"><a href="#">Karir</a></li>
+                        <li style="margin-bottom:0.8rem;"><a href="#">Blog</a></li>
+                        <li style="margin-bottom:0.8rem;"><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Newsletter</h4>
+                    <p style="font-size:0.9rem;margin-bottom:1rem;">Dapatkan info terbaru seputar UMKM dan program kami.</p>
+                    <form onsubmit="handleNewsletter(event)" style="display:flex;gap:0.5rem;">
+                        <input type="email" placeholder="Email Anda" required style="flex:1;padding:0.7rem 1rem;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:#fff;font-size:0.9rem;font-family:'Plus Jakarta Sans',sans-serif;">
+                        <button type="submit" style="background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border:none;padding:0.7rem 1rem;border-radius:10px;cursor:pointer;transition:all 0.3s;">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,0.08);padding:1.5rem 0;">
+            <div class="container mx-auto px-6 flex flex-wrap justify-between items-center gap-4">
+                <p style="font-size:0.85rem;margin:0;">&copy; 2026 UMKM Nusantara. Hak Cipta Dilindungi.</p>
+                <p style="font-size:0.85rem;margin:0;">Dibuat dengan <i class="fas fa-heart" style="color:var(--accent);"></i> untuk Indonesia</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="position:fixed;bottom:2rem;right:2rem;width:50px;height:50px;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border:none;border-radius:50%;cursor:pointer;font-size:1.2rem;box-shadow:0 4px 20px rgba(184,134,11,0.3);transition:all 0.3s;opacity:0;visibility:hidden;z-index:100;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Toast Notification -->
+    <div id="toast" style="position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:var(--dark);color:#fff;padding:1rem 2rem;border-radius:12px;font-size:0.9rem;font-weight:500;box-shadow:0 10px 40px rgba(0,0,0,0.2);z-index:9999;transition:transform 0.4s ease;display:flex;align-items:center;gap:0.8rem;">
+        <i class="fas fa-check-circle" style="color:#4caf50;"></i>
+        <span id="toastMessage">Pesan berhasil dikirim!</span>
+    </div>
+
+    <script>
+        // Page Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('pageLoader').classList.add('hidden');
+            }, 800);
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            if (window.scrollY > 500) {
+                backToTop.style.opacity = '1';
+                backToTop.style.visibility = 'visible';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.visibility = 'hidden';
+            }
+        });
+
+        // Mobile Menu
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        // Reveal on Scroll
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                const revealPoint = 120;
+
+                if (elementTop < windowHeight - revealPoint) {
+                    el.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+
+                // Start animation when visible
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateCounter();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                observer.observe(counter);
+            });
+        }
+
+        animateCounters();
+
+        // Product Filter
+        function filterProducts(category) {
+            const cards = document.querySelectorAll('.product-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                btn.style.background = '#fff';
+                btn.style.color = '#666';
+                btn.style.borderColor = '#ddd';
+            });
+
+            event.target.style.background = 'var(--accent)';
+            event.target.style.color = '#fff';
+            event.target.style.borderColor = 'var(--accent)';
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeInUp 0.5s ease forwards';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Wishlist Toggle
+        function toggleWishlist(el) {
+            const icon = el.querySelector('i');
+            if (icon.classList.contains('far')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                icon.style.color = '#ff4757';
+                showToast('Ditambahkan ke wishlist ❤️');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                icon.style.color = '';
+                showToast('Dihapus dari wishlist');
+            }
+        }
+
+        // FAQ Toggle
+        function toggleFaq(btn) {
+            const answer = btn.nextElementSibling;
+            const icon = btn.querySelector('i');
+
+            if (answer.style.maxHeight && answer.style.maxHeight !== '0px') {
+                answer.style.maxHeight = '0px';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMessage');
+            toastMsg.textContent = message;
+            toast.style.transform = 'translateX(-50%) translateY(0)';
+
+            setTimeout(() => {
+                toast.style.transform = 'translateX(-50%) translateY(100px)';
+            }, 3000);
+        }
+
+        // Form Submit
+        function handleSubmit(e) {
+            e.preventDefault();
+            showToast('Pesan berhasil dikirim! Kami akan segera menghubungi Anda.');
+            e.target.reset();
+        }
+
+        // Newsletter Submit
+        function handleNewsletter(e) {
+            e.preventDefault();
+            showToast('Terima kasih! Anda berhasil berlangganan newsletter kami.');
+            e.target.reset();
+        }
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
